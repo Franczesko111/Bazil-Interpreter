@@ -39,7 +39,7 @@ void Function(uint8_t id, std::string &buffer, const std::string &second_buffer,
         {
             int x = stoi(buffer);
             int y = stoi(second_buffer);
-            int result = x - y;
+            int result = y - x;
             buffer = std::to_string(result);
             current--;
         }
