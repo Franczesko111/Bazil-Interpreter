@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include "Lexer.hpp"
+#include "Executor.hpp"
 
 void Print(const std::vector<std::string> &tokens);
 
@@ -13,7 +14,8 @@ int main()
     {
         getline(file, data);
         tokens = Lexer(data);
-        Print(tokens);
+        Execute(tokens);
+        //Print(tokens);
     }
     return 0;
 }
