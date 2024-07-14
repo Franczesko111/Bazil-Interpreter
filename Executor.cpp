@@ -44,6 +44,26 @@ void Function(uint8_t id, std::string &buffer, const std::string &second_buffer,
             current--;
         }
         break;
+
+        case MULTIPLY_SYMBOL:
+        {
+            int x = stoi(buffer);
+            int y = stoi(second_buffer);
+            int result = x * y;
+            buffer = std::to_string(result);
+            current--;
+        }
+        break;
+        
+        case DIVIDE_SYMBOL:
+        {
+            int x = stoi(buffer);
+            int y = stoi(second_buffer);
+            int result = y / x;
+            buffer = std::to_string(result);
+            current--;
+        }
+        break;
         
         default: break;
     }
@@ -54,5 +74,7 @@ uint8_t Find(const std::string &data)
     if(data == "PRINT") return PRINT;
     else if(data == "+") return PLUS_SYMBOL;
     else if(data == "-") return MINUS_SYMBOL;
+    else if(data == "*") return MULTIPLY_SYMBOL;
+    else if(data == "/") return DIVIDE_SYMBOL;
     else return 0;
 }

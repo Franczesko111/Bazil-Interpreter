@@ -6,7 +6,9 @@ enum Keywords
 {
     PRINT = 1,
     PLUS_SYMBOL,
-    MINUS_SYMBOL
+    MINUS_SYMBOL,
+    MULTIPLY_SYMBOL,
+    DIVIDE_SYMBOL
 };
 
 void Execute(const std::vector<std::string> &tokens);
