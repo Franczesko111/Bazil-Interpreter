@@ -35,7 +35,28 @@ void Function(uint8_t id, std::string &buffer, const std::string &second_buffer,
         
         case MATH:
         {
-
+            std::string result;
+            uint8_t temp_current;
+            uint8_t id;
+            bool finish = false;
+            bool math;
+            while(finish == false)
+            {
+                math = false;
+                for(temp_current = 1; temp_current < tokens.size()-1; temp_current++)
+                {
+                    id = Find(tokens[temp_current]);
+                    if(id == MULTIPLY_SYMBOL || id == DIVIDE_SYMBOL) {
+                        math = true;
+                        result = tokens[temp_current-1];
+                        Function(id, result, tokens[temp_current+1], current, tokens);
+                        tokens[temp_current-1] = result;
+                        RemoveElementInArray(tokens, temp_current);
+                        RemoveElementInArray(tokens, temp_current);
+                    }
+                }
+                if(math == false) finish = true;
+            }
         }
         break;
         
@@ -93,4 +114,14 @@ uint8_t Find(const std::string &data)
     else if(data == "*") return MULTIPLY_SYMBOL;
     else if(data == "/") return DIVIDE_SYMBOL;
     else return 0;
+}
+
+void RemoveElementInArray(std::vector<std::string> &tokens, uint8_t index)
+{
+    tokens[index].clear();
+    for(uint8_t i = index; i < tokens.size()-1; i++) {
+        tokens[i] = tokens[i+1];
+    }
+    tokens[tokens.size()-1].clear();
+    tokens.shrink_to_fit();
 }
