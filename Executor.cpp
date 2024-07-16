@@ -51,8 +51,7 @@ void Function(uint8_t id, std::string &buffer, const std::string &second_buffer,
                         result = tokens[temp_current-1];
                         Function(id, result, tokens[temp_current+1], current, tokens);
                         tokens[temp_current-1] = result;
-                        RemoveElementInArray(tokens, temp_current);
-                        RemoveElementInArray(tokens, temp_current);
+                        RemoveElementInArray(tokens, temp_current, 2);
                     }
                 }
                 if(math == false) finish = true;
@@ -116,12 +115,12 @@ uint8_t Find(const std::string &data)
     else return 0;
 }
 
-void RemoveElementInArray(std::vector<std::string> &tokens, uint8_t index)
+void RemoveElementInArray(std::vector<std::string> &tokens, uint8_t index, uint8_t amount)
 {
     tokens[index].clear();
-    for(uint8_t i = index; i < tokens.size()-1; i++) {
-        tokens[i] = tokens[i+1];
+    for(uint8_t i = index; i < tokens.size()-amount; i++) {
+        tokens[i] = tokens[i+amount];
     }
-    tokens[tokens.size()-1].clear();
+    for(uint8_t i = tokens.size()-amount; i <= tokens.size()-1; i++) tokens[i].clear();
     tokens.shrink_to_fit();
 }
