@@ -120,7 +120,6 @@ void RemoveElementInArray(std::vector<std::string> &tokens, uint8_t index, uint8
     tokens[index].clear();
     for(uint8_t i = index; i < tokens.size()-amount; i++) {
         tokens[i] = tokens[i+amount];
+        tokens[i+amount].clear();
     }
-    for(uint8_t i = tokens.size()-amount; i <= tokens.size()-1; i++) tokens[i].clear();
-    tokens.shrink_to_fit();
 }
